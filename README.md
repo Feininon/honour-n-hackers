@@ -21,7 +21,7 @@ ollama serve
 
 ---
 
-## ⚙️ Setup
+## Setup
 
 ```bash
 python app.py
