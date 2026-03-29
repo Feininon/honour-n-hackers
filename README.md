@@ -1,4 +1,8 @@
 # Honour-N-Hackers
+## Behind the Idea
+
+
+
 
 Flask application that integrates a local LLM (Ollama) to:
 
@@ -6,38 +10,18 @@ Flask application that integrates a local LLM (Ollama) to:
 * Persist campaign state (lore)
 * Answer gameplay queries using stored context + rules
 
----
+## Versions and stuff
 
-## Requirements
-
-* Python 3.13+
+* Python 3.13.5
 * Ollama running locally
-
+  
 ```bash
 pip install flask ollama
 ollama pull llama3.2
 ollama serve
 ```
 
----
-
-## Setup
-
-```bash
-python app.py
-```
-
-Runs on:
-
-```
-http://localhost:5000
-```
-
----
-
-## Components
-
-### 1. Persistence Layer
+##  Persistence Layer
 
 #### `campaign_lore.txt`
 
@@ -53,89 +37,7 @@ http://localhost:5000
 * Static rules context
 * Injected into every reasoning prompt
 
----
 
-### 2. Prompt Construction
-
-#### Character Review Prompt
-
-* Role: *Advisor*
-* Inputs:
-
-  * Rules
-  * Character sheet
-* Output:
-
-  * 3–4 bullet suggestions
-* Focus:
-
-  * HP / AC sanity
-  * Lore consistency
-
----
-
-#### RAR Prompt (Retrieval Augmented Reasoning)
-
-* Inputs:
-
-  * Full lore (all past state)
-  * Rules
-  * Dice value
-  * User query
-* Structure:
-
-  * Context (lore)
-  * Mechanics (rules)
-  * Action (query + dice)
-* Output:
-
-  * Reasoning + outcome
-
----
-
-### 3. AI Execution
-
-```python
-ollama.generate(model=MODEL, prompt=...)
-```
-
-* Stateless per call
-* Context entirely provided via prompt
-* No memory outside files
-
----
-
-### 4. Formatting Layer
-
-Character data is transformed into a structured block before storage:
-
-```
-[CHARACTER REGISTERED]
-NAME: ...
-VITALS: HP:... | AC:...
-STATS: ...
-...
-----------------------------------------------
-```
-
-Purpose:
-
-* Makes lore readable
-* Improves retrieval quality inside prompts
-
----
-
-### 5. File Access Utility
-
-```python
-get_file_content(path)
-```
-
-* Safe read
-* Returns empty string if missing
-* Prevents runtime errors
-
----
 
 ## Routes
 
@@ -253,28 +155,6 @@ B -->|Update Lore| M[Append DM Event]
 M --> H
 ```
 
----
-
-## Key Points
-
-* **Single source of truth:** `campaign_lore.txt`
-* **No DB:** file-based persistence
-* **Context = prompt:** all reasoning depends on injected text
-* **RAR design:** combines memory + rules + input each call
-* **Append-only system:** history is never modified, only extended
-
----
-
-## Run
-
-```bash
-pip install flask ollama
-ollama pull llama3.2
-ollama serve
-python app.py
-```
-
----
 
 ## Credits
 
