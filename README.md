@@ -1,4 +1,4 @@
-# 🧙‍♂️ AI D&D Assistant
+# Honour-N-Hackers
 
 Flask application that integrates a local LLM (Ollama) to:
 
