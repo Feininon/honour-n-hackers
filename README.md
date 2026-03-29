@@ -1,14 +1,12 @@
 # Honour-N-Hackers
-## Behind the Idea
-
-
-
 
 Flask application that integrates a local LLM (Ollama) to:
 
 * Review character sheets
 * Persist campaign state (lore)
 * Answer gameplay queries using stored context + rules
+
+## Behind the Idea
 
 ## Versions and stuff
 
