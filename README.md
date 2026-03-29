@@ -10,7 +10,7 @@ Flask application that integrates a local LLM (Ollama) to:
 
 ## Requirements
 
-* Python 3.8+
+* Python 3.13+
 * Ollama running locally
 
 ```bash
