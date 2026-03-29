@@ -52,7 +52,7 @@ ollama serve
 
 * **POST /api/ask** : Generate outcome using lore + rules + dice
 
-
+---
 **Flow**
 
 1. Format character → structured text
