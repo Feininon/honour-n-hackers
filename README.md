@@ -8,7 +8,7 @@ Flask application that integrates a local LLM (Ollama) to:
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 * Python 3.8+
 * Ollama running locally
@@ -40,7 +40,7 @@ Auto-created files:
 
 ---
 
-## 🧩 Components
+## Components
 
 ### 1. Persistence Layer
 
@@ -142,7 +142,7 @@ get_file_content(path)
 
 ---
 
-## 🌐 Routes
+## Routes
 
 ### `/`
 
@@ -234,7 +234,7 @@ get_file_content(path)
 
 ---
 
-## 🔄 Workflow
+## Workflow
 
 ```mermaid
 flowchart TD
@@ -260,7 +260,7 @@ M --> H
 
 ---
 
-## 🧠 Key Points
+## Key Points
 
 * **Single source of truth:** `campaign_lore.txt`
 * **No DB:** file-based persistence
@@ -270,7 +270,7 @@ M --> H
 
 ---
 
-## ▶️ Run
+## Run
 
 ```bash
 pip install flask ollama
@@ -278,3 +278,7 @@ ollama pull llama3.2
 ollama serve
 python app.py
 ```
+
+---
+
+
