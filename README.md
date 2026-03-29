@@ -35,51 +35,23 @@ ollama serve
 * Static rules context
 * Injected into every reasoning prompt
 
-
-
-## Routes
-
-### `/`
-
-* Loads full lore
-* Displays current state
-
 ---
 
-### `/create`
 
-* Entry point for character creation
+## API Endpoints
 
----
+* **GET /** : Home page (loads lore)
 
-### `/api/review_char` (POST)
+* **GET /create** : Character creation page
 
-**Input**
+* **POST /api/review_char** : Review character and return suggestions
 
-```json
-{
-  "sheet": "<character_data>"
-}
-```
+* **POST /api/save_char** : Save character to lore
 
-**Flow**
+* **POST /api/update_lore** : Append DM event to lore
 
-1. Load rules
-2. Construct advisory prompt
-3. Send to model
-4. Return feedback
+* **POST /api/ask** : Generate outcome using lore + rules + dice
 
----
-
-### `/api/save_char` (POST)
-
-**Input**
-
-```json
-{
-  "sheet": { ... }
-}
-```
 
 **Flow**
 
