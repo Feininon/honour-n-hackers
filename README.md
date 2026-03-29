@@ -33,11 +33,6 @@ Runs on:
 http://localhost:5000
 ```
 
-Auto-created files:
-
-* `campaign_lore.txt` → persistent state
-* `dnd_rules.txt` → rules injected into prompts
-
 ---
 
 ## Components
