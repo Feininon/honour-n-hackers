@@ -1,0 +1,190 @@
+
+
+    [NEW CHARACTER PROPOSAL]
+    IDENTITY: Vespera Nightshade (Elf Rogue)
+    BACKGROUND: 
+    
+    STATS: Str 8 | Dex 15 | Con 14 | Int 12 | Wis 10 | Cha 13
+    VITALS: HP 10 | AC 13 | Init +2 | Speed 30ft
+    
+    GEAR: Leather Armor, Daggers x2
+    FEATURES: CLASS: Sneak Attack, Thieves' Cant
+
+RACE: Darkvision, Keen Senses, Fey Ancestry, Trance
+    BIO: I grew up in the gilded halls of the Elven capital, but the boredom drove me to the undercity. I started moving rare magical artifacts for the highest bidder. I don't steal for greed; I steal for the thrill of outsmarting the locks. I hate direct confrontation and will always look for a chandelier to drop on an enemy before drawing my dagger.
+    
+[STATUS: APPROVED BY RULES]
+----------------------------------------------
+
+
+    [NEW CHARACTER PROPOSAL]
+    IDENTITY: Ognar Flamebeard (Dwarf Wizard)
+    BACKGROUND: 
+    
+    STATS: Str 8 | Dex 13 | Con 14 | Int 15 | Wis 12 | Cha 10
+    VITALS: HP 8 | AC 11 | Init +1 | Speed 25ft
+    
+    GEAR: Quarterstaff, Spellbook
+    FEATURES: CLASS: Arcane Recovery, Spellcasting
+
+RACE: Darkvision, Dwarven Resilience, Stonecunning 
+    BIO: My clan wanted me to forge steel, but I wanted to forge reality. I was exiled for accidentally setting the clan's beard-oil reserves on fire during a cantrip experiment. Now I search for ancient scrolls to prove that Dwarven magic is superior to Elven tricks. I am grumpy, easily distracted by old books, and terrified of water.
+    
+[STATUS: APPROVED BY RULES]
+----------------------------------------------
+
+
+    [NEW CHARACTER PROPOSAL]
+    IDENTITY: Brother Aric (Human Cleric)
+    BACKGROUND: 
+    
+    STATS: Str 13 | Dex 8 | Con 14 | Int 10 | Wis 15 | Cha 12
+    VITALS: HP 10 | AC 15 | Init -1 | Speed 30ft
+    
+    GEAR: Mace, Scale Mail, Shield, Holy Symbol
+    FEATURES: CLASS: Divine Domain, Spellcasting
+
+RACE: Extra Language, +1 to All Ability Scores
+    BIO: I was found on the temple steps as a babe. I have never known a family outside the church. I believe that every life is sacred, but I am not a pacifist; sometimes, to save the sheep, you must smite the wolf. I speak softly, carry a heavy shield, and pray constantly for guidance.
+    
+[STATUS: APPROVED BY RULES]
+----------------------------------------------
+
+
+    [NEW CHARACTER PROPOSAL]
+    IDENTITY: Grog the Smasher (Half-Orc Barbarian)
+    BACKGROUND: outlander
+    
+    STATS: Str 15 | Dex 13 | Con 14 | Int 10 | Wis 12 | Cha 8
+    VITALS: HP 14 | AC 11 | Init -1 | Speed 30ft
+    
+    GEAR: Greataxe, Handaxe x2, Javelins x4
+    FEATURES: CLASS: Rage, Unarmored Defense
+
+RACE: Darkvision, Relentless Endurance, Savage Attacks
+    BIO: My tribe left me behind because I showed mercy to a wounded elk. I survived in the wilds alone, learning that nature is cruel but fair. I trust my axe more than words. I am looking for a pack that won't leave me behind again. I collect the teeth of my enemies as lucky charms.
+    
+[STATUS: APPROVED BY RULES]
+----------------------------------------------
+
+
+[CHARACTER REGISTERED]
+NAME: Seraphina the Stalwart | RACE: Tiefling | CLASS: Paladin
+VITALS: HP:11 | AC:16 | INIT:-1
+STATS: S:15 D:8 C:13 I:10 W:12 CH:14
+SAVES: Wis, Cha | SKILLS: Athletics, Persuasion
+GEAR: Chain Mail
+BIO: Born into a high-ranking noble house, my infernal appearance was a scandal they tried to hide. I was raised in isolation until I took an oath to protect the weak, hoping my deeds would outshine my bloodline. I am fiercely loyal to my companions and tend to speak in "noble" formal prose, even in a tavern. I despise liars and will always offer a fair duel before a chaotic brawl.
+----------------------------------------------
+
+
+[DM UPDATE]: The party stands before the Obsidian Threshold deep within the Whispering Woods ruins. A heavy iron portcullis blocks the path, and the floor is flooded with a foot of stagnant, murky water. Ognar, remembering his exile after the beard-oil fire and his deep terror of water, refuses to step forward.
+
+A spectral guardian—a translucent knight with no head—floats before the gate. It does not attack but points a shimmering blade at the group. Seraphina steps forward, her Chain Mail clanking, and prepares to speak. Vespera is already scanning the ceiling for a loose chandelier or crumbling masonry to exploit. Grog is gripped by a strange curiosity, wondering if a ghost's "spirit-teeth" can be added to his lucky charm collection. Brother Aric whispers a prayer, his shield raised, waiting for the spirit to make its intent known.
+
+[DM UPDATE]: The party stop as they meet a pale, ghostly figure. "Welcome, visitors! may i know your cause of death?"
+
+[DM UPDATE]: The wizard stays frozen in fear, Seraphina opens her mouth to seek passage, with the party looking to her for strength
+
+[DM UPDATE]: The ghostly figure invites the heroes, giving them a chance to speak
+
+[DM UPDATE]: The ghost introduces himself as Sir Nicholas, the headless Baron of Albania. Seraphina says to the ghost "We wish to pass through this land, for the way around is too long, too dangerous and our supplies run low"
+
+[DM UPDATE]: "Never!" shouts sir nicholas. "To begin with, you have not even answered my basic question I asked of you earlier. I feel sorry for you lost souls. I will ask you once again in simpler terms. Answer or Turn back"
+
+[DM UPDATE]: You answer "It seems there has been a misunderstanding sir, we are not dead souls. We are outlanders, on the mission to recover the lost treasures of icathia. An anonymous source tipped us off to a location, which we are going to investigate". 
+
+[DM UPDATE]: "So you seek the lost treasures. Very well, follow me into the Manor, if you're so determined". 
+
+[DM UPDATE]: The party cautiously follows the ghostly figure into the halls of the Manor. The walls are cracked, and look like they could fall at any moment. The Wizard religiously reads his spellbook out of feaar, accidentally knocking over a vase in the hallway. The noise attracts a giant spider that crawls from under the floor.
+
+[DM UPDATE]: The party stays still, while vespera does her sneak attack onto the spider. However, the spider is already aware of her presence, and manages to dodge it, only becoming mover aggravated. Vespera tires out a little.
+
+
+[DM UPDATE]: Grog comes to her rescue, attempting a clean hit on the spider with his battleaxe. Gravely injuring the spider, which retreats back to its nest.
+
+[DM UPDATE]: The party follows the ghost down to the basement. A scent of dread fills the air, or maybe it is the smell of...rotting corpses. The ghost stops in the centre of the basement room and turns to the party.
+
+[DM UPDATE]: The wizard, though scared initially, uses his dark vision to see through the darkness and discovers the room full of bones. He demands an answer from the ghost, who simply laughs and raises a ghostly sword in response"
+
+[DM UPDATE]: Brother Aric casts a spell using his Holy relic, against sir nicholas. "I command you to lead us through this manor to the road to the treasure" he orders.
+
+[DM UPDATE]: Cowering, the defeated ghost leads you to the other side of the manor with no incidents. Upon exiting the borders of the Obsidian however, Brother Aric faints
+
+[DM UPDATE]: The Smasher picks his fallen comrade, and the party continues. Exhausted, they reach a crossroads. They could march forward, deeper into the valley of echoes on the road to treasure but rumored to be a dangerous passage or go and rest in a nearby village 
+
+
+[DM UPDATE]: The exhausted party reaches the small shepherd village of south biterville. They look to the nearby inn to leave the exhausted party members to rest. Vespera is too angry to rest however, and goes to the market to find information.
+
+[DM UPDATE]: She spots an elderly elf in deep conversation with a local. He doesn't seem to notice anything around him. An easy mark. Just as she is leaving after conviniently relocating his gold, she hears him say the word "Fey"
+
+[DM UPDATE]: Intrigued, she listens further. "It is a shame isn't it. So many treasure hunters these days. All of them gone to the valley, and yet not one of them returend. All sacrifices to the sirens"
+
+
+[DM UPDATE]: Deciding she heard enough, she scours the city, and finds an alleyway with the sign 'Fey' haphazardly painted on it. Decides to go in, only to find 12 sets of elven eyes on her.
+
+
+[DM UPDATE]: She introduces herself. Then says " I am here to surpass my own abilties. Challenge me, Teach me, or get out of my way.". Upon hearing this declaration. One of the elves stands up, with a curious look on their face. "What abilities do you speak of, child?"
+
+[DM UPDATE]: "I am a warrior who uses daggers. My signature move is my sneak attack, yet it seems like I can never actually sneak on to anyone they always sense my presence.' She goes on to describe her past experiences. The elf nods. 
+
+[DM UPDATE]: "I accept your challenge" says the elf. The others form a circle around the two of you. Both of them take their fighting stance. She notices that they prefer to use a staff. Vespera ponders her next move.
+
+[DM UPDATE]: The elf easily deflects her attack and disarms her in one move. "Thank you for sparring with me", they say, "I have now seen what you lack. What you lack, is the art of misdirection. If you truly wish to learn our secret elf arts, you will need to train harder".
+
+[DM UPDATE]: Vespera asks " Teach me.". The elf however, shakes their head and lowers their hood. It is the image of a lady wearing a silver crown, shining with a glow. "I am Artemis, goddess of the moon. If you seek my guidance, pray to me during a full moon. My servants will teach you what you need to know."
+
+
+[DM UPDATE]: Relieved and with hope for the future, Vespera returns to the inn, holding a covered item in her hand, the conversation with Artemis still on her mind. She found them all asleep, except for seraphina the stalwart, who simply nodded.
+
+
+[DM UPDATE]: Relieved and with hope for the future, Vespera returns to the inn, holding a covered item in her hand, the conversation with Artemis still on her mind. She found them all asleep, except for seraphina the stalwart, who simply nodded.
+
+
+[DM UPDATE]: At the crack of dawn, Seraphina is busy waking everyone up "It's best to keep a low profile, let's get out of here before attracting too much attention". They hated it, but did not dare talk back to the stalwart. THe Party, now well rested follows the road descending to the valley of echoes
+
+
+[DM UPDATE]: After an uneventful hour of walking, Seraphina sees something incredible. The road ahead diverged into two paths. On the left was a castle that was full of liveliness. To the right was a farm that reminded her of childhood. The whole place was nostalgic.
+
+[DM UPDATE]: Deciding against her selfishness, she decides to lead her party to the castle. On the way, Brother Aric is happy, saying he always wanted to go visit the sun disk of icathia. The wizard says he cannot wait until they can relax at the beach.
+
+[DM UPDATE]: Upon reaching the place, the party is greeted by a man whose face was ever changing. She could swear that his hair was black when they first saw him, but by the time he spoke it had turned red. "Welcome my friends, it is such a nice day to have visitors. Would you like a tour?"
+
+[DM UPDATE]: The party agrees, and goes along with this tour. Everything seems like a dream here. Unlike the tiny village they just visited, nobody here seems to be suffering even a little bit. All of them are cheering for the visitors. Seems like they don't get that many. Their 'Guide' however seems to be completely ignored by them. The tour ends with the castle itself, and he is inviting all of them in. His hair is green now by the way.
+
+[DM UPDATE]: The party goes along with it, to the throne room. There, they meet with King Minos and Queen Pasiphae. "Please show our guests to the garden, they seem like they need some fresh air" said the king with a look of indifference. The confused party is now taken to the garden.
+
+[DM UPDATE]: By the time the party reaches the garden it is already night. Seraphina thinks that it's strange, since it was day a moment ago. But maybe it's her imagination. They all sit near the royal fountain, and become thirsty all of a sudden. maybe some water will do them good
+
+[DM UPDATE]: Water does sound nice, Seraphina thought. Before she could ponder it however, her comrades had already drunk the water and instantly fell asleep, it looked like. Finding it strange, she checks the Wizard's body to see if he's breathing. "Hey back off I'm just meditating, i hate the look of that fountain', he says. Relieved, she figures the others are fine too, however she notes that grog has let the axe go. he NEVER lets his axe go even during sleep. She checks him and finds that he's not breathing.
+
+[DM UPDATE]: "Oh they're not dead, dear". Seraphina hears the voice of king minos. "None of us are". She hears, echoing all around her.
+
+
+[DM UPDATE]: She turns around, and finds the villagers they met. All of them have a smile on their faces, as if they're in a dream. In peace. In bliss. Why don't you join them? a voice asks. It's far easier than what's ahead for you.
+
+[DM UPDATE]: "Never" you both whisper in unison to each other. "Well, we can always use other methods" replies the voice of Queen pasiphae. The world blacks out. 
+
+[DM UPDATE]: The Wizard and the Stalwart wake, in a room of metal walls and no windows. "Welcome to my home", says the guide from earlier. "I am Daedalus, and it seems to me that you two personally offended our royals". 
+
+[DM UPDATE]: "Where are we?", asks seraphina. "Welcome to the labyrinth. The rules here are simple. you escape, or you submit. Enjoy". With that, daedalus disappears. Ognar casts a spell and finds that they should, by all means be in the same garden, and not in some prison. 
+
+[DM UPDATE]: The wizard tries to shatter the illusion, but fails. Determined, he tries again, this time to wake up Brother Aric specifically, and succeeds this time. 
+
+[DM UPDATE]: It still doesn't seem like he can hear or see them, but Ognar feels the barrier weaken slightly, maybe this presents oppurtunity
+
+[DM UPDATE]: With the walls weakened further, the wizard attempts to shatter the illusion once again and succeeds this time.
+
+[DM UPDATE]: "How disappointing, I suppose we will fight the old fashioned way", says the voice of king minos. It's the party against the king and queen.
+
+[DM UPDATE]: The cunning rogue is not out of tricks. She gives the wizard an idea to create an illusion of themselves, that appear ready to fight, while they use the distraction to leave the grounds, and out of the influence of the illusion. Ognar consults his spellbook and nods. The plan is in motion.
+
+[DM UPDATE]: The cunning rogue is not out of tricks. She gives the wizard an idea to create an illusion of themselves, that appear ready to fight, while they use the distraction to leave the grounds, and out of the influence of the illusion. Ognar consults his spellbook and nods. The plan is in motion.
+
+[DM UPDATE]: The party covertly moves under the cover of the trees. They're just about to reach the back gate when a figure blocks them. "running away are we?", says Daedalus
+
+[DM UPDATE]: Aric borrows Ognar' spellbook and casts the spell of darkness in an attempt to escape Daedalus. BUt the spell fails. Grog throws his javelin at Daedalus in an attempt to incapacitate him so they can all escape, but misses. "We don't have to fight", says daedalus. "I can hear you out"
+
+[DM UPDATE]: Seraphina makes an offer to daedalus, "Let us go now, and we will help you catch many more people in return". Daedalus does not seem interested, but is paying attention to her. Vespera takes this chance to launch a sneak attack without him noticing.
+
+[DM UPDATE]: The attack succeeds, filling vespera with confidence and experience. They take this oppurtunity and escape deeper into the valley, choosing to camp near the entrance of the winding caverns.

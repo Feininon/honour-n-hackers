@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DM Dashboard | RAR Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Metamorphous&display=swap');
+
+    /* D&D Theme Variables & Body Setup */
+    body { 
+        margin: 0; padding: 0; overflow: hidden; height: 100vh; width: 100vw; 
+        background: radial-gradient(circle, #1a0f0a 0%, #050302 100%);
+        font-family: 'Metamorphous', serif;
+        color: #e2c08d; /* Gold-tinted text for general visibility */
+    }
+
+    /* Scrollbar - Rusty Iron Style */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #5c2d2d; border-radius: 4px; border: 1px solid #3d1c1c; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+
+    /* Chronicle Panel - Aged Parchment Look */
+    .chronicle-panel {
+        background: linear-gradient(to bottom, #f4e4bc 0%, #e2c08d 100%);
+        color: #a54b24; /* Dark ink color */
+        border: 4px solid #8b4513;
+        box-shadow: inset 0 0 30px rgba(139, 69, 19, 0.4), 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    /* Inner Lore Box - Deep Inset Parchment */
+    #loreDisplay {
+        background: rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(139, 69, 19, 0.3);
+        color: #e36a55;
+        font-family: 'Metamorphous', serif;
+    }
+
+    /* Oracle Panel - Arcane Night Look */
+    .oracle-panel {
+        background: linear-gradient(135deg, #161422 0%, #090912 100%);
+        border: 2px solid #4f46e5;
+        box-shadow: 0 0 20px rgba(79, 70, 229, 0.2);
+    }
+
+    /* AI Output Box - Glowing Runes Style */
+    #aiOut {
+        background: rgba(0, 0, 0, 0.6) !important;
+        border: 1px solid #312e81;
+        color: #a5b4fc; /* Pale arcane blue */
+        text-shadow: 0 0 5px rgba(165, 180, 252, 0.2);
+    }
+
+    /* Input Fields & Textareas - Embossed Inset */
+    textarea, input#aiIn {
+        background: rgba(0, 0, 0, 0.4) !important;
+        border: 1px solid #4a3728 !important;
+        border-radius: 8px;
+        color: #f4e4bc !important;
+        box-shadow: inset 0 2px 10px rgba(0,0,0,0.7);
+    }
+
+    /* Override for the Chronicle Textarea (should look like darker paper) */
+    .chronicle-panel textarea {
+        background: rgba(139, 69, 1 brown, 0.1) !important;
+        border-color: #8b4513 !important;
+        color: #2c1810 !important;
+    }
+
+    /* Dice/Roll Section Container */
+    .roll-container {
+        background: rgba(30, 41, 59, 0.2);
+        border: 1px solid #1e3a8a;
+        box-shadow: inset 0 0 15px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Dice Display - Blazing Ember Blue */
+    #rollDisplay {
+        font-family: 'MedievalSharp', cursive;
+        color: #60a5fa;
+        text-shadow: 0 0 10px #2563eb, 0 0 20px #1d4ed8;
+    }
+
+    /* Buttons - Fantasy Materials */
+    .btn-dnd-blue {
+        background: linear-gradient(to bottom, #3b82f6, #1e40af);
+        border: 2px solid #60a5fa;
+        color: white;
+        font-family: 'MedievalSharp', cursive;
+        box-shadow: 0 4px 0 #1e3a8a, 0 8px 15px rgba(0,0,0,0.4);
+    }
+
+    .btn-dnd-green {
+        background: linear-gradient(to bottom, #16a34a, #14532d);
+        border: 2px solid #22c55e;
+        color: #f0fdf4;
+        box-shadow: 0 4px 0 #064e3b, 0 8px 15px rgba(0,0,0,0.4);
+    }
+
+    .btn-dnd-purple {
+        background: linear-gradient(to bottom, #9333ea, #581c87);
+        border: 2px solid #c084fc;
+        color: #f5f3ff;
+        box-shadow: 0 4px 0 #4c1d95, 0 8px 15px rgba(0,0,0,0.4);
+    }
+
+    /* Headings */
+    h2 { 
+        font-family: 'MedievalSharp', cursive; 
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+</style>
+</head>
+<body class="bg-gray-950 text-slate-300 p-4">
+
+    <div class="grid grid-cols-12 gap-4 h-[calc(100vh-2rem)]">
+        
+        <div class="col-span-4 flex flex-col h-full bg-slate-900 rounded-xl p-4 border border-slate-800 min-h-0">
+            <h2 class="text-amber-500 font-bold text-lg mb-2 shrink-0">📜 Campaign Chronicle</h2>
+            
+            <div id="loreDisplay" class="flex-grow overflow-y-auto bg-black/30 p-4 rounded text-xs whitespace-pre-wrap leading-relaxed border border-slate-800/50 min-h-0">
+                {{ lore }}
+            </div>
+
+            <div class="mt-4 shrink-0">
+                <textarea id="loreInput" class="w-full bg-slate-800 p-2 rounded text-sm mb-2 outline-none focus:ring-1 focus:ring-amber-500" rows="2" placeholder="Update story..."></textarea>
+                <button onclick="saveLore()" class="w-full bg-green-700 hover:bg-green-600 p-2 rounded font-bold text-xs uppercase">Save Chronicle</button>
+            </div>
+        </div>
+
+        <div class="col-span-8 flex flex-col h-full space-y-4 min-h-0">
+            
+            <div class="bg-blue-900/10 border border-blue-900/30 rounded-xl p-4 flex justify-between items-center shrink-0">
+                <div class="text-5xl font-black text-blue-500" id="rollDisplay">--</div>
+                <div class="flex flex-col items-end">
+                    <button onclick="roll(20)" class="bg-blue-600 hover:bg-blue-500 px-8 py-2 rounded-full font-black text-white shadow-lg">ROLL D20</button>
+                    <a href="/create" class="text-slate-600 hover:text-amber-500 text-[10px] underline mt-1">Register New Player</a>
+                </div>
+            </div>
+
+            <div class="flex-grow flex flex-col bg-slate-900 rounded-xl p-4 border border-slate-800 overflow-hidden min-h-0">
+                <h2 class="text-purple-400 font-bold mb-2 shrink-0">🔮 AI Oracle Reasoning</h2>
+                
+                <div id="aiOut" class="flex-grow overflow-y-auto text-sm italic bg-black/40 p-4 rounded-lg border border-purple-900/20 mb-4 leading-relaxed text-slate-400 min-h-0">
+                    The Oracle awaits the weave of fate...
+                </div>
+
+                <div class="flex space-x-2 shrink-0">
+                    <input id="aiIn" class="flex-grow bg-slate-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-500 text-sm" placeholder="Ask about the roll...">
+                    <button onclick="askAI()" class="bg-purple-600 hover:bg-purple-500 px-6 rounded-lg font-bold text-sm">REASON</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lastRoll = 0;
+        function roll(s) { 
+            lastRoll = Math.floor(Math.random()*s)+1; 
+            document.getElementById('rollDisplay').innerText = lastRoll; 
+        }
+        
+        async function saveLore() {
+            const event = document.getElementById('loreInput').value;
+            if(!event) return;
+            await fetch('/api/update_lore', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({event}) });
+            location.reload();
+        }
+
+        async function askAI() {
+            const query = document.getElementById('aiIn').value;
+            const out = document.getElementById('aiOut');
+            if(!query) return;
+            out.innerText = "Consulting the scrolls of logic...";
+            
+            const res = await fetch('/api/ask', { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify({query, dice: lastRoll}) 
+            });
+            const data = await res.json(); 
+            out.innerText = data.response;
+            
+            // Auto-scroll to the bottom of the AI output
+            out.scrollTop = out.scrollHeight;
+        }
+    </script>
+</body>
+</html>

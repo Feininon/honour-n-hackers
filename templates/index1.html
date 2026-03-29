@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAR Dungeon Master Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; }
+        .panel { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+    </style>
+</head>
+<body class="h-screen overflow-hidden p-4">
+
+    <div class="grid grid-cols-12 gap-4 h-full">
+        
+        <div class="col-span-4 flex flex-col space-y-4 h-full">
+            <div class="panel p-4 flex-grow overflow-hidden flex flex-col">
+                <h2 class="text-amber-500 font-bold mb-2 flex items-center">📜 Chronicle & Characters</h2>
+                <div id="loreDisplay" class="flex-grow overflow-y-auto text-sm font-serif bg-slate-900/50 p-3 rounded whitespace-pre-wrap">{{ lore }}</div>
+            </div>
+            
+            <div class="panel p-4">
+                <h3 class="text-sm font-bold text-slate-400 mb-2">Register Player (Paste Sheet)</h3>
+                <textarea id="charInput" class="w-full h-24 bg-slate-900 p-2 text-xs rounded border border-slate-700" placeholder="NAME: ... ROLE: ..."></textarea>
+                <button onclick="createChar()" class="w-full mt-2 bg-amber-700 hover:bg-amber-600 py-1 rounded text-sm font-bold">Validate & Add</button>
+            </div>
+        </div>
+
+        <div class="col-span-5 flex flex-col space-y-4">
+            <div class="panel p-6 flex-grow flex flex-col justify-center items-center relative overflow-hidden">
+                <div class="text-center">
+                    <h1 class="text-4xl font-black text-slate-700 absolute top-4 left-4 opacity-20">DM CORE</h1>
+                    <div id="diceResult" class="text-8xl font-black text-blue-500 mb-4">--</div>
+                    <div class="flex space-x-2">
+                        <button onclick="roll(20)" class="bg-blue-600 px-6 py-2 rounded-full font-bold shadow-lg shadow-blue-900/50">Roll D20</button>
+                        <button onclick="roll(6)" class="bg-slate-700 px-6 py-2 rounded-full font-bold">D6</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel p-4">
+                <h3 class="text-sm font-bold text-slate-400 mb-2">Update Campaign Story</h3>
+                <div class="flex space-x-2">
+                    <input id="loreEvent" class="flex-grow bg-slate-900 p-2 rounded border border-slate-700" placeholder="The dragon breathes fire...">
+                    <button onclick="updateLore()" class="bg-green-700 px-4 rounded font-bold">Log</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-3 flex flex-col h-full">
+            <div class="panel p-4 flex-grow flex flex-col overflow-hidden border-blue-500/30">
+                <h2 class="text-blue-400 font-bold mb-2">🔮 AI Oracle (RAR)</h2>
+                <div id="aiResponse" class="flex-grow overflow-y-auto text-xs italic text-slate-300 bg-slate-900/80 p-3 rounded border border-blue-900/20">
+                    Reasoning will appear here...
+                </div>
+                <div class="mt-4">
+                    <input id="aiQuery" class="w-full bg-slate-800 p-2 rounded text-sm border border-slate-700" placeholder="Can the Rogue jump this?">
+                    <button onclick="askAI()" class="w-full mt-2 bg-blue-600 hover:bg-blue-500 py-2 rounded font-bold text-sm">Reason Through Action</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let lastRoll = null;
+
+        function roll(s) {
+            lastRoll = Math.floor(Math.random() * s) + 1;
+            document.getElementById('diceResult').innerText = lastRoll;
+        }
+
+        async function createChar() {
+            const sheet = document.getElementById('charInput').value;
+            const res = await fetch('/create_char', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({sheet}) });
+            const data = await res.json();
+            alert(data.message);
+            if (data.status === 'success') location.reload();
+        }
+
+        async function updateLore() {
+            const event = document.getElementById('loreEvent').value;
+            await fetch('/update_lore', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({event}) });
+            location.reload();
+        }
+
+        async function askAI() {
+            const query = document.getElementById('aiQuery').value;
+            const resBox = document.getElementById('aiResponse');
+            resBox.innerText = "The Oracle is meditating on the lore...";
+            
+            const res = await fetch('/ask', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ query, dice: lastRoll })
+            });
+            const data = await res.json();
+            resBox.innerText = data.response;
+        }
+    </script>
+</body>
+</html>

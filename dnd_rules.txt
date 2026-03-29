@@ -1,0 +1,100 @@
+--- D&D 5E CORE MECHANICS ---
+ROLLING: Success = d20 + modifiers vs Difficulty Class (DC).
+DC GUIDELINES: 5 (Very Easy), 10 (Easy), 15 (Medium), 20 (Hard), 25 (Very Hard).
+
+--- VALIDATION CHECKLIST (AI INSTRUCTIONS) ---
+1. HP CHECK: Ensure Max HP matches the Class Hit Die + CON Modifier.
+2. ARMOR CHECK: Ensure the character is not wearing armor their class prohibits (e.g., Wizards in Plate).
+3. STAT CHECK: Stats should follow standard array logic (Highest ~15-17, Lowest ~8). No stats over 20 at Level 1.
+4. BIO CHECK: Ensure the backstory fits a fantasy setting and isn't "god-moding".
+
+--- RACIAL TRAITS & SPEEDS ---
+(Use this to validate Speed and Traits)
+1. DRAGONBORN: Speed 30ft. Traits: Breath Weapon, Damage Resistance.
+2. DWARF: Speed 25ft. Traits: Darkvision, Dwarven Resilience.
+3. ELF: Speed 30ft. Traits: Darkvision, Keen Senses, Fey Ancestry.
+4. GNOME: Speed 25ft. Traits: Darkvision, Gnome Cunning.
+5. HALF-ELF: Speed 30ft. Traits: Darkvision, Fey Ancestry, Skill Versatility.
+6. HALF-ORC: Speed 30ft. Traits: Darkvision, Relentless Endurance, Savage Attacks.
+7. HALFLING: Speed 25ft. Traits: Lucky, Brave, Nimbleness.
+8. HUMAN: Speed 30ft. Traits: Versatile (+1 to all stats or Feat).
+9. TIEFLING: Speed 30ft. Traits: Darkvision, Hellish Resistance.
+
+--- CLASS RULES (LEVEL 1) ---
+(Use this to validate HP, Armor, and Gear)
+
+1. BARBARIAN
+   - Hit Die: d12 (HP = 12 + CON mod)
+   - Armor: Light, Medium, Shields. (Unarmored Defense allowed).
+   - Saves: Strength, Constitution.
+   - Illegal Gear: Heavy Armor.
+
+2. BARD
+   - Hit Die: d8 (HP = 8 + CON mod)
+   - Armor: Light Armor only.
+   - Saves: Dexterity, Charisma.
+   - Illegal Gear: Medium/Heavy Armor, Shields.
+
+3. CLERIC
+   - Hit Die: d8 (HP = 8 + CON mod)
+   - Armor: Light, Medium, Shields. (Some domains allow Heavy).
+   - Saves: Wisdom, Charisma.
+   
+4. DRUID
+   - Hit Die: d8 (HP = 8 + CON mod)
+   - Armor: Light, Medium, Shields.
+   - RESTRICTION: Druids will NOT wear armor or use shields made of metal.
+   - Saves: Intelligence, Wisdom.
+
+5. FIGHTER
+   - Hit Die: d10 (HP = 10 + CON mod)
+   - Armor: All Armor (Light, Medium, Heavy), Shields.
+   - Saves: Strength, Constitution.
+
+6. MONK
+   - Hit Die: d8 (HP = 8 + CON mod)
+   - Armor: None. (Unarmored Defense).
+   - Saves: Strength, Dexterity.
+   - Illegal Gear: Armor, Shields.
+
+7. PALADIN
+   - Hit Die: d10 (HP = 10 + CON mod)
+   - Armor: All Armor, Shields.
+   - Saves: Wisdom, Charisma.
+
+8. RANGER
+   - Hit Die: d10 (HP = 10 + CON mod)
+   - Armor: Light, Medium, Shields.
+   - Saves: Strength, Dexterity.
+   - Illegal Gear: Heavy Armor.
+
+9. ROGUE
+   - Hit Die: d8 (HP = 8 + CON mod)
+   - Armor: Light Armor only.
+   - Saves: Dexterity, Intelligence.
+   - Illegal Gear: Medium/Heavy Armor, Shields.
+
+10. SORCERER
+    - Hit Die: d6 (HP = 6 + CON mod)
+    - Armor: None.
+    - Saves: Constitution, Charisma.
+    - Illegal Gear: Any Armor, Shields.
+
+11. WARLOCK
+    - Hit Die: d8 (HP = 8 + CON mod)
+    - Armor: Light Armor.
+    - Saves: Wisdom, Charisma.
+    - Illegal Gear: Medium/Heavy Armor, Shields (unless Hexblade).
+
+12. WIZARD
+    - Hit Die: d6 (HP = 6 + CON mod)
+    - Armor: None.
+    - Saves: Intelligence, Wisdom.
+    - Illegal Gear: Any Armor, Shields.
+
+--- COMBAT BASICS ---
+- INITIATIVE: d20 + DEX modifier.
+- ATTACK ROLL: d20 + Ability Mod + Proficiency Bonus (+2 at Level 1).
+- DAMAGE: Weapon Die + Ability Mod.
+- DEATH SAVES: 3 successes to stabilize, 3 failures to die. Reset on regain HP.
+

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pro Forge | D&D 5e</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Allow the page to scroll naturally so nothing is cut off */
+        body { background: #0b0f19; color: #cbd5e1; font-family: 'Inter', sans-serif; overflow-y: auto; min-height: 100vh; }
+        .module { background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 1.25rem; position: relative; display: flex; flex-grow: 1; flex-direction: column; }
+        input, select, textarea { background: transparent; border: none; border-bottom: 1px solid #374151; color: white; width: 100%; outline: none; transition: border 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: #f59e0b; }
+        .label-tiny { font-size: 0.65rem; font-weight: 800; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
+        .stat-val { font-size: 1.5rem; font-weight: 900; color: white; text-align: center; }
+        .mod-circle { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #374151; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #f59e0b; background: #0f172a; margin: 0 auto; font-size: 0.8rem; }
+        .btn-action { background: #1e3a8a; color: #bfdbfe; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; position: absolute; top: 10px; right: 10px; cursor: pointer; z-index: 10; }
+        .btn-submit { background: #d97706; color: white; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 1.25rem; border-radius: 8px; width: 100%; transition: all 0.2s; }
+        .btn-submit:hover { background: #b45309; transform: translateY(-1px); }
+        
+        /* Skills Grid */
+        .check-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+        .check-item { display: flex; align-items: center; font-size: 0.75rem; color: #9ca3af; }
+        .check-item input { width: auto; margin-right: 8px; }
+
+        /* Modal Layout - Fixed to 90vh with internal scroll */
+#reviewModal { 
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.92); 
+    z-index: 100; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 1.5rem; 
+}
+
+.modal-card { 
+    background: #1e293b; 
+    border: 1px solid #334155; 
+    padding: 2.5rem; 
+    border-radius: 12px; 
+    max-width: 650px; 
+    width: 100%; 
+    /* The Fix: Clamp the height and enable scrolling */
+    max-height: 90vh; 
+    overflow-y: auto; 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); 
+}
+
+/* Ensure the scrollbar matches the app's dark theme */
+.modal-card::-webkit-scrollbar { width: 6px; }
+.modal-card::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
+    </style>
+</head>
+<body class="p-4 md:p-8 lg:p-12">
+
+    <div id="reviewModal">
+        <div class="modal-card">
+            <h2 class="text-2xl font-black text-amber-500 mb-2 uppercase tracking-tighter">🔮 Oracle's Review</h2>
+            <div id="aiFeedback" class="text-sm italic text-slate-300 mb-8 leading-relaxed bg-black/40 p-5 rounded border-l-4 border-amber-500 min-h-[150px] whitespace-pre-wrap">
+                Consulting the scrolls...
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="closeModal()" class="flex-1 bg-slate-700 hover:bg-slate-600 py-3 rounded font-bold text-xs uppercase transition-colors">Adjust Sheet</button>
+                <button onclick="confirmSave()" class="flex-1 bg-green-700 hover:bg-green-600 py-3 rounded font-bold text-xs uppercase text-white transition-colors">Approve & Forge</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-[1500px] mx-auto space-y-8">
+        
+        <div class="module !flex-row flex-wrap gap-6 items-end">
+            <div class="flex-grow min-w-[250px]">
+                <label class="label-tiny text-amber-500">Character Name</label>
+                <input id="name" class="text-4xl font-black uppercase tracking-tight" placeholder="HERO NAME">
+            </div>
+            <div class="w-full sm:w-48"><label class="label-tiny">Class</label><select id="classSelect" class="font-bold text-lg" onchange="suggestVitals()"><option value="Barbarian">Barbarian</option><option value="Bard">Bard</option><option value="Cleric">Cleric</option><option value="Druid">Druid</option><option value="Fighter" selected>Fighter</option><option value="Monk">Monk</option><option value="Paladin">Paladin</option><option value="Ranger">Ranger</option><option value="Rogue">Rogue</option><option value="Sorcerer">Sorcerer</option><option value="Warlock">Warlock</option><option value="Wizard">Wizard</option></select></div>
+            <div class="w-full sm:w-48"><label class="label-tiny">Race</label><select id="raceSelect" class="font-bold text-lg" onchange="suggestVitals()"><option value="Dragonborn">Dragonborn</option><option value="Dwarf">Dwarf</option><option value="Elf">Elf</option><option value="Gnome">Gnome</option><option value="Half-Elf">Half-Elf</option><option value="Half-Orc">Half-Orc</option><option value="Halfling">Halfling</option><option value="Human" selected>Human</option><option value="Tiefling">Tiefling</option></select></div>
+            <div class="w-full sm:w-48"><label class="label-tiny">Background</label><input id="background" placeholder="e.g. Soldier"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-3 space-y-8 flex flex-col">
+                <div class="module flex-grow-0">
+                    <button onclick="suggestStats()" class="btn-action">Standard Array</button>
+                    <div class="label-tiny mb-4 text-center">Ability Scores</div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded"><div><label class="label-tiny">STR</label><input type="number" id="str" value="10" class="text-center font-bold" oninput="calcMods()"></div><div id="strMod" class="mod-circle">+0</div></div>
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded"><div><label class="label-tiny">DEX</label><input type="number" id="dex" value="10" class="text-center font-bold" oninput="calcMods()"></div><div id="dexMod" class="mod-circle">+0</div></div>
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded"><div><label class="label-tiny">CON</label><input type="number" id="con" value="10" class="text-center font-bold" oninput="calcMods()"></div><div id="conMod" class="mod-circle">+0</div></div>
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded"><div><label class="label-tiny">INT</label><input type="number" id="int" value="10" class="text-center font-bold" oninput="calcMods()"></div><div id="intMod" class="mod-circle">+0</div></div>
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded"><div><label class="label-tiny">WIS</label><input type="number" id="wis" value="10" class="text-center font-bold" oninput="calcMods()"></div><div id="wisMod" class="mod-circle">+0</div></div>
+                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded"><div><label class="label-tiny">CHA</label><input type="number" id="cha" value="10" class="text-center font-bold" oninput="calcMods()"></div><div id="chaMod" class="mod-circle">+0</div></div>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <button onclick="suggestProficiencies()" class="btn-action">Suggest</button>
+                    <label class="label-tiny mb-3">Saves</label>
+                    <div class="grid grid-cols-2 gap-2 mb-6">
+                        <div class="check-item"><input type="checkbox" id="saveStr"> STR</div><div class="check-item"><input type="checkbox" id="saveDex"> DEX</div>
+                        <div class="check-item"><input type="checkbox" id="saveCon"> CON</div><div class="check-item"><input type="checkbox" id="saveInt"> INT</div>
+                        <div class="check-item"><input type="checkbox" id="saveWis"> WIS</div><div class="check-item"><input type="checkbox" id="saveCha"> CHA</div>
+                    </div>
+                    <label class="label-tiny mb-3 border-t border-gray-800 pt-3">Skills</label>
+                    <div class="check-grid" id="skillGrid"></div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 space-y-8 flex flex-col">
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="module items-center justify-center py-6"><button onclick="suggestVitals()" class="btn-action" style="top:2px; right:2px; font-size:0.55rem;">Auto</button><input id="ac" class="stat-val" placeholder="10"><label class="label-tiny mt-1">AC</label></div>
+                    <div class="module items-center justify-center py-6"><input id="init" class="stat-val" placeholder="+0"><label class="label-tiny mt-1">Init</label></div>
+                    <div class="module items-center justify-center py-6"><input id="speed" class="stat-val" placeholder="30ft"><label class="label-tiny mt-1">Speed</label></div>
+                </div>
+
+                <div class="module border-red-900/30 bg-red-950/10">
+                    <div class="flex justify-between items-end mb-2"><label class="label-tiny text-red-500">Max HP</label><input id="hp" class="text-right text-3xl font-black w-24 bg-transparent" placeholder="10"></div>
+                    <div class="h-8 border-t border-red-900/30 flex items-center justify-center text-gray-500 italic text-xs">Hit Point Maximum</div>
+                </div>
+
+                <div class="module"><button onclick="suggestAttacks()" class="btn-action">Defaults</button><label class="label-tiny mb-2">Attacks</label><textarea id="attacks" class="w-full min-h-[150px] resize-none text-sm text-gray-300 font-mono" placeholder="Weapon | Bonus | Damage"></textarea></div>
+                
+                <div class="module flex-grow"><button onclick="suggestGear()" class="btn-action">Suggest Gear</button><label class="label-tiny mb-2">Equipment</label><textarea id="gear" class="w-full min-h-[150px] flex-grow resize-none text-xs"></textarea></div>
+            </div>
+
+            <div class="lg:col-span-4 space-y-8 flex flex-col">
+                <div class="module border-amber-900/30 bg-amber-950/5"><label class="label-tiny text-amber-500 mb-2">Bio (Required for AI)</label><textarea id="bio" class="w-full min-h-[250px] resize-none text-sm leading-relaxed" placeholder="Narrative history and character flaws..."></textarea></div>
+                
+                <div class="module flex-grow"><button onclick="suggestFeatures()" class="btn-action">Features</button><label class="label-tiny mb-2">Features</label><textarea id="features" class="w-full min-h-[180px] flex-grow resize-none text-xs"></textarea></div>
+
+                <button onclick="startReview()" class="btn-submit shadow-2xl shadow-amber-900/30">Forge Character</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const allSkills = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"];
+        const raceData = { 
+            "Dragonborn": { speed: "30ft", traits: "Breath Weapon" }, 
+            "Dwarf": { speed: "25ft", traits: "Darkvision, Dwarven Resilience" }, 
+            "Elf": { speed: "30ft", traits: "Darkvision, Fey Ancestry" }, 
+            "Gnome": { speed: "25ft", traits: "Gnome Cunning" }, 
+            "Half-Elf": { speed: "30ft", traits: "Skill Versatility" }, 
+            "Half-Orc": { speed: "30ft", traits: "Relentless Endurance" }, 
+            "Halfling": { speed: "25ft", traits: "Lucky" }, 
+            "Human": { speed: "30ft", traits: "+1 All Ability Scores" }, 
+            "Tiefling": { speed: "30ft", traits: "Hellish Resistance" } 
+        };
+        const classData = {
+            "Barbarian": { hp:12, ac:10, saves:['Str','Con'], skills:['Athletics','Survival'], type:'unarmored_con', statPriority:['str','con','dex','wis','int','cha'], features:"Rage", gear:"Greataxe", attacks:"Greataxe +STR" },
+            "Bard": { hp:8, ac:11, saves:['Dex','Cha'], skills:['Performance','Persuasion'], type:'light', statPriority:['cha','dex','con','wis','int','str'], features:"Bardic Inspiration", gear:"Rapier", attacks:"Rapier +DEX" },
+            "Cleric": { hp:8, ac:16, saves:['Wis','Cha'], skills:['Religion','Insight'], type:'medium_shield', statPriority:['wis','con','str','cha','int','dex'], features:"Divine Domain", gear:"Mace, Shield", attacks:"Mace +STR" },
+            "Druid": { hp:8, ac:11, saves:['Int','Wis'], skills:['Nature','Animal Handling'], type:'light_shield', statPriority:['wis','con','dex','int','str','cha'], features:"Druidic", gear:"Scimitar", attacks:"Scimitar +DEX" },
+            "Fighter": { hp:10, ac:16, saves:['Str','Con'], skills:['Athletics','Intimidation'], type:'heavy', statPriority:['str','con','dex','wis','int','cha'], features:"Second Wind", gear:"Chain Mail", attacks:"Longsword +STR" },
+            "Monk": { hp:8, ac:10, saves:['Str','Dex'], skills:['Acrobatics','Insight'], type:'unarmored_wis', statPriority:['dex','wis','con','str','int','cha'], features:"Martial Arts", gear:"Shortsword", attacks:"Unarmed +DEX" },
+            "Paladin": { hp:10, ac:16, saves:['Wis','Cha'], skills:['Athletics','Persuasion'], type:'heavy', statPriority:['str','cha','con','wis','int','dex'], features:"Lay on Hands", gear:"Chain Mail", attacks:"Longsword +STR" },
+            "Ranger": { hp:10, ac:14, saves:['Str','Dex'], skills:['Survival','Stealth'], type:'medium', statPriority:['dex','wis','con','str','int','cha'], features:"Favored Enemy", gear:"Scale Mail", attacks:"Shortsword +DEX" },
+            "Rogue": { hp:8, ac:11, saves:['Dex','Int'], skills:['Stealth','Acrobatics'], type:'light', statPriority:['dex','con','cha','int','wis','str'], features:"Sneak Attack", gear:"Leather Armor", attacks:"Dagger +DEX" },
+            "Sorcerer": { hp:6, ac:10, saves:['Con','Cha'], skills:['Arcana','Deception'], type:'none', statPriority:['cha','con','dex','wis','int','str'], features:"Sorcery", gear:"Daggers", attacks:"Fire Bolt +CHA" },
+            "Warlock": { hp:8, ac:11, saves:['Wis','Cha'], skills:['Arcana','Intimidation'], type:'light', statPriority:['cha','con','dex','wis','int','str'], features:"Pact Magic", gear:"Leather Armor", attacks:"Eldritch Blast +CHA" },
+            "Wizard": { hp:6, ac:10, saves:['Int','Wis'], skills:['Arcana','History'], type:'none', statPriority:['int','con','dex','wis','cha','str'], features:"Arcane Recovery", gear:"Spellbook", attacks:"Fire Bolt +INT" }
+        };
+
+        const skillGrid = document.getElementById('skillGrid');
+        allSkills.forEach(s => { const d=document.createElement('div'); d.className='check-item'; d.innerHTML=`<input type="checkbox" id="skill${s.replace(/\s/g,'')}"> ${s}`; skillGrid.appendChild(d); });
+
+        function getMod(id) { return Math.floor(((parseInt(document.getElementById(id).value)||10)-10)/2); }
+        function calcMods() { ['str','dex','con','int','wis','cha'].forEach(s=>{ const m=getMod(s); document.getElementById(s+'Mod').innerText=(m>=0?'+':'')+m; }); }
+        
+        function suggestStats() { 
+            const p = classData[document.getElementById('classSelect').value].statPriority;
+            const vals = [15,14,13,12,10,8];
+            p.forEach((s,i) => document.getElementById(s).value = vals[i]);
+            calcMods(); 
+        }
+
+        function suggestVitals() {
+            const cls = document.getElementById('classSelect').value, rVal = document.getElementById('raceSelect').value;
+            const c = classData[cls], r = raceData[rVal];
+            const dex=getMod('dex'), con=getMod('con'), wis=getMod('wis');
+            document.getElementById('hp').value = c.hp+con;
+            document.getElementById('speed').value = r.speed;
+            document.getElementById('init').value = (dex>=0?'+':'')+dex;
+            let ac = c.ac;
+            if(c.type=='unarmored_con') ac=10+dex+con;
+            else if(c.type=='unarmored_wis') ac=10+dex+wis;
+            else if(c.type.includes('light')||c.type=='none') ac=(c.type=='none'?10:11)+dex;
+            else if(c.type.includes('medium')) ac=14+Math.min(2,dex);
+            if(c.type.includes('shield')) ac+=2;
+            document.getElementById('ac').value = ac;
+        }
+
+        function suggestProficiencies() { 
+            document.querySelectorAll('input[type="checkbox"]').forEach(c=>c.checked=false);
+            const d=classData[document.getElementById('classSelect').value];
+            d.saves.forEach(s=>document.getElementById('save'+s).checked=true);
+            d.skills.forEach(s=>document.getElementById('skill'+s.replace(/\s/g,'')).checked=true);
+        }
+        function suggestFeatures() { document.getElementById('features').value = `CLASS: ${classData[document.getElementById('classSelect').value].features}\nRACE: ${raceData[document.getElementById('raceSelect').value].traits}`; }
+        function suggestGear() { document.getElementById('gear').value = classData[document.getElementById('classSelect').value].gear; }
+        function suggestAttacks() { document.getElementById('attacks').value = classData[document.getElementById('classSelect').value].attacks; }
+
+        let currentSheet = null;
+        async function startReview() {
+            let saves=[], skills=[];
+            ['Str','Dex','Con','Int','Wis','Cha'].forEach(s=>{if(document.getElementById('save'+s).checked)saves.push(s)});
+            allSkills.forEach(s=>{if(document.getElementById('skill'+s.replace(/\s/g,'')).checked)skills.push(s)});
+            
+            currentSheet = {
+                name: document.getElementById('name').value, class: document.getElementById('classSelect').value,
+                race: document.getElementById('raceSelect').value, background: document.getElementById('background').value,
+                stats: { str:document.getElementById('str').value, dex:document.getElementById('dex').value, con:document.getElementById('con').value, int:document.getElementById('int').value, wis:document.getElementById('wis').value, cha:document.getElementById('cha').value },
+                vitals: { hp:document.getElementById('hp').value, ac:document.getElementById('ac').value, init:document.getElementById('init').value, speed:document.getElementById('speed').value },
+                saves: saves, skills: skills, attacks: document.getElementById('attacks').value, features: document.getElementById('features').value,
+                gear: document.getElementById('gear').value, bio: document.getElementById('bio').value
+            };
+            if(!currentSheet.name || !currentSheet.bio) return alert("Name and Bio required!");
+            document.getElementById('reviewModal').style.display = 'flex';
+            document.getElementById('aiFeedback').innerText = "Oracle is meditating on your hero...";
+            const res = await fetch('/api/review_char', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({sheet: currentSheet}) });
+            const data = await res.json();
+            document.getElementById('aiFeedback').innerText = data.feedback || "Error reaching AI: " + data.error;
+        }
+        function closeModal() { document.getElementById('reviewModal').style.display = 'none'; }
+        async function confirmSave() {
+            const res = await fetch('/api/save_char', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({sheet: currentSheet}) });
+            const data = await res.json();
+            alert(data.message);
+            if(data.status==='success') window.location.href = '/';
+        }
+        window.onload = calcMods;
+    </script>
+</body>
+</html>
