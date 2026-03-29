@@ -52,54 +52,7 @@ ollama serve
 
 * **POST /api/ask** : Generate outcome using lore + rules + dice
 
----
-**Flow**
 
-1. Format character → structured text
-2. Append to `campaign_lore.txt`
-3. Return success
-
----
-
-### `/api/update_lore` (POST)
-
-**Input**
-
-```json
-{
-  "event": "..."
-}
-```
-
-**Flow**
-
-1. Append `[DM UPDATE]` entry to lore
-2. Return success
-
----
-
-### `/api/ask` (POST)
-
-**Input**
-
-```json
-{
-  "query": "...",
-  "dice": 10
-}
-```
-
-**Flow**
-
-1. Load:
-
-   * Lore (full history)
-   * Rules
-2. Construct RAR prompt
-3. Send to model
-4. Return generated response
-
----
 
 ## Workflow
 
